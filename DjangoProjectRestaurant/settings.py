@@ -5,11 +5,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-1%b#uh*aib%yw+5%s_zxnz&dw8iu=)vhpzne#()iy2+w=wp65#'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = "True"
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = "127.0.0.1"
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,7 +72,7 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-database_url = 'postgres://koycho_django_project_db_user:AiXz2awFahUjikDxoItukFMMezkFMcYv@dpg-cp6qdnuv3ddc73foileg-a.oregon-postgres.render.com/koycho_django_project_db'
+database_url = os.environ.get('DB_URL')
 DATABASES["default"] = dj_database_url.parse(database_url)
 
 # Password validation
